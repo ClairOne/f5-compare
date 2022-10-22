@@ -6,16 +6,14 @@
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 
 	<!-- Bootstrap -->
-	<link href="{!! asset('vendor/twbs/bootstrap/dist/css/bootstrap.min.css') !!}" rel="stylesheet">
+	<link href="/bootstrap/bootstrap.min.css" rel="stylesheet">
 	<!-- Requires jQuery -->
-    <!-- @TODO: localize jquery -->
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/jquery/3.2.1/jquery.min.js"></script>
 
 	<!-- Requires CodeMirror -->
-    <!-- @TODO: localize CodeMirror -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/addon/search/searchcursor.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.min.css" />
+	<script type="text/javascript" src="/codemirror/5.32.0/codemirror.min.js"></script>
+	<script type="text/javascript" src="/codemirror/5.32.0/addon/search/searchcursor.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="/codemirror/5.32.0/codemirror.min.css" />
 
 	<!-- Requires Mergely -->
 	<script type="text/javascript" src="/mergely/js/mergely.js"></script>
@@ -67,40 +65,43 @@
 	</script>
 </head>
 <body>
-	<table  style="width: 100%;">
-		<tr>
-			<td style="width: 50%;">
-				<select id="lhsSelect">
-					<option>Select a file...</option>
-					@foreach ($files as $file)
-					<option>{{ $file }}</option>
-					@endforeach
-				</select>
-			</td>
-			<td style="width: 50%;">
-				<select id="rhsSelect">
-					<option>Select a file...</option>
-					@foreach ($files as $file)
-					<option>{{ $file }}</option>
-					@endforeach
-				</select>
-			</td>
-		</tr>
-	</table>
-	<div class="alert alert-primary" role="alert">
-  A simple primary alert—check it out!
-</div>
-	<table  style="width: 100%;">
-		<tr>
-			<td style="width: 50%;"><tt id="path-lhs"></tt></td>
-			<td style="width: 50%;"><tt id="path-rhs"></tt></td>
-		</tr>
-	</table>
-	<div class="mergely-full-screen-80">
-		<div class="mergely-resizer">
-			<div id="mergely">
+	<div class="container">
+		<div class="card my-2 shadow">
+			<div class="card-body">
+				<div class="row p-1 text-center">
+					<div class="col-6 text-center">
+						<select id="lhsSelect" class="form-select">
+							<option>Select a file...</option>
+							@foreach ($files as $file)
+							<option>{{ $file }}</option>
+							@endforeach
+						</select>
+					</div>
+					<div class="col-6 text-center">
+						<select id="rhsSelect" class="form-select">
+							<option>Select a file...</option>
+							@foreach ($files as $file)
+							<option>{{ $file }}</option>
+							@endforeach
+						</select>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+
+	<div class="container">
+		<div class="card">
+			<div class="card-header">
+				Content Comparison
+			</div>
+			<div class="card-body">
+				<div class="mergely-resizer">
+					<div id="mergely"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 </html>
