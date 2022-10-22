@@ -5,6 +5,8 @@
 	<meta http-equiv="X-UA-Compatible" content="chrome=1, IE=edge">
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 
+	<!-- Bootstrap -->
+	<link href="{!! asset('vendor/twbs/bootstrap/dist/css/bootstrap.min.css') !!}" rel="stylesheet">
 	<!-- Requires jQuery -->
     <!-- @TODO: localize jquery -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -30,46 +32,68 @@
 				}
 			});
 			$("#mergely-splash").remove();
-			var lhs_url = '/src/' + '{{ $lhsFile }}';
-			var rhs_url = '/src/' + '{{ $rhsFile }}';
+			$("#lhsSelect").change(function(){
+				$('#path-lhs').text($("#lhsSelect").find(":selected").val());
+				//alert();
+				lhsLoad($("#lhsSelect").find(":selected").val());
+			});
+			$("#rhsSelect").change(function(){
+				$('#path-rhs').text($("#rhsSelect").find(":selected").val());
+				rhsLoad($("#rhsSelect").find(":selected").val());
+			});	
+		});
+	</script>
+	<script type="text/javascript">
+		function lhsLoad($fileName){
+			var fileUrl = '/compare/getfile/' + $fileName;
 			$.ajax({
 				type: 'GET', async: true, dataType: 'text',
-				url: lhs_url,
+				url: fileUrl,
 				success: function (response) {
-					$('#path-lhs').text(lhs_url.replace("/src/", ""));
 					$('#mergely').mergely('lhs', response);
 				}
 			});
+		}
+		function rhsLoad($fileName){
+			var fileUrl = '/compare/getfile/' + $fileName;
 			$.ajax({
 				type: 'GET', async: true, dataType: 'text',
-				url: rhs_url,
+				url: fileUrl,
 				success: function (response) {
-					$('#path-rhs').text(rhs_url.replace("/src/", ""));
 					$('#mergely').mergely('rhs', response);
 				}
 			});
-			$.ajax({
-				type: 'GET', async: true, dataType: 'text',
-				url: '/compare/files',
-				success: function (response) {
-					$('#path-rhs').text(rhs_url.replace("/src/", ""));
-					$('#mergely').mergely('rhs', response);
-				}
-			});
-			$("#lhsSelect").click(function(){
-				alert('Left Side file chooser modal');
-			});
-			$("#rhsSelect").click(function(){
-				alert('Right Side file chooser modal');
-			});	
-		});
+		}
 	</script>
 </head>
 <body>
 	<table  style="width: 100%;">
 		<tr>
-			<td style="width: 50%;"><button id="lhsSelect">File...</button> &nbsp; <tt id="path-lhs"></tt></td>
-			<td style="width: 50%;"><button id="rhsSelect">File...</button> &nbsp; <tt id="path-rhs"></tt></td>
+			<td style="width: 50%;">
+				<select id="lhsSelect">
+					<option>Select a file...</option>
+					@foreach ($files as $file)
+					<option>{{ $file }}</option>
+					@endforeach
+				</select>
+			</td>
+			<td style="width: 50%;">
+				<select id="rhsSelect">
+					<option>Select a file...</option>
+					@foreach ($files as $file)
+					<option>{{ $file }}</option>
+					@endforeach
+				</select>
+			</td>
+		</tr>
+	</table>
+	<div class="alert alert-primary" role="alert">
+  A simple primary alert—check it out!
+</div>
+	<table  style="width: 100%;">
+		<tr>
+			<td style="width: 50%;"><tt id="path-lhs"></tt></td>
+			<td style="width: 50%;"><tt id="path-rhs"></tt></td>
 		</tr>
 	</table>
 	<div class="mergely-full-screen-80">
@@ -77,17 +101,6 @@
 			<div id="mergely">
 			</div>
 		</div>
-	</div>
-	<div>
-		<h2>Available Files</h2>
-		<p><i>These will go into the modal file selector window</i></p>
-		<p>
-			<ul>
-				@foreach ($files as $file)
-				<li>{{ $file }}</li>
-				@endforeach
-			</ul>
-		</p>
 	</div>
 </body>
 </html>

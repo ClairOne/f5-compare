@@ -1,15 +1,15 @@
 version: '2'
 
 services:
-  f5_compare_db:
-    image: docker.io/bitnami/mariadb:10.6
-    ports:
-      - '3306:3306'
-    environment:
+#  f5_compare_db:
+#    image: docker.io/bitnami/mariadb:10.6
+#    ports:
+#      - '3306:3306'
+#    environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
-      - ALLOW_EMPTY_PASSWORD=yes
-      - MARIADB_USER=f5_compare
-      - MARIADB_DATABASE=f5_compare
+#      - ALLOW_EMPTY_PASSWORD=yes
+#      - MARIADB_USER=f5_compare
+#      - MARIADB_DATABASE=f5_compare
   f5_compare_web:
     image: docker.io/bitnami/laravel:9
     ports:
@@ -21,5 +21,5 @@ services:
       - DB_DATABASE=f5_compare
     volumes:
       - './webui:/app'
-    depends_on:
-      - f5_compare_db
+#    depends_on:
+#      - f5_compare_db

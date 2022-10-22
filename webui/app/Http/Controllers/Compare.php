@@ -12,24 +12,23 @@ class Compare extends Controller
         return view('compare/compare', ['files'=>$files,'lhsFile'=>'','rhsFile'=>'']);
     }
     public function filelist(){
-        $basePath = '../public/src/';
-        $allFiles = scandir($basePath);
-        $allowedExtensions = ['html','txt','conf'];
+        $allFiles = scandir(config('f5_compare.path_to_files'));
         // filter them
         $files = [];
         foreach($allFiles as $file){
-            if(in_array(pathinfo($file, PATHINFO_EXTENSION),$allowedExtensions)){
+            if(in_array(pathinfo($file, PATHINFO_EXTENSION),config('f5_compare.allowed_file_types'))){
                 array_push($files,$file);
             }
         }
         return ($files);
     }
     public function getFileContents(string $file = ''){
-        dd($file);
-        $basePath = '../public/src/';
-        if(empty($file) || !file_exists($basePath . $file)){
-            return 'Select a valid file to compare the contents';
+        if(empty($file)
+         || !in_array(pathinfo($file, PATHINFO_EXTENSION),config('f5_compare.allowed_file_types'))
+         || !file_exists(config('f5_compare.path_to_files') . $file )
+         ){
+            return "400:Select a valid file to compare the contents";
         }
-        return file_get_contents($basePath . $file);
+        return file_get_contents(config('f5_compare.path_to_files') . $file);
     }
 }

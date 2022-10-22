@@ -1,0 +1,47 @@
+[
+  {
+    "_id": "6351c3ac7bbaa0ed74df5499",
+    "index": 0,
+    "guid": "61492754-85c8-4dab-99e0-00f4357975d3",
+    "isActive": true,
+    "balance": "$3,874.54",
+    "picture": "http://placehold.it/32x32",
+    "age": 22,
+    "eyeColor": "green",
+    "name": "Chambers Pennington",
+    "gender": "male",
+    "company": "HOMELUX",
+    "email": "chamberspennington@homelux.com",
+    "phone": "+1 (922) 583-2820",
+    "address": "515 Hope Street, Thatcher, West Virginia, 3018",
+    "about": "Laboris nisi dolore ea eu sint esse magna quis labore laborum. Excepteur enim consectetur cillum ipsum amet minim eu deserunt culpa commodo. Dolor aliqua enim veniam sit deserunt tempor quis adipisicing. Ea laboris dolore consequat nulla adipisicing aliqua dolor. Sit minim proident elit mollit sunt sit ipsum. Excepteur incididunt anim id elit irure do ut laborum et incididunt cupidatat.\r\n",
+    "registered": "2021-02-09T08:09:10 +06:00",
+    "latitude": 23.992797,
+    "longitude": -22.582955,
+    "tags": [
+      "nisi",
+      "non",
+      "officia",
+      "adipisicing",
+      "reprehenderit",
+      "qui",
+      "adipisicing"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Harper Knox"
+      },
+      {
+        "id": 1,
+        "name": "Alexander Hickman"
+      },
+      {
+        "id": 2,
+        "name": "Franco Moses"
+      }
+    ],
+    "greeting": "Hello, Chambers Pennington! You have 10 unread messages.",
+    "favoriteFruit": "strawberry"
+  }
+]
