@@ -22,4 +22,3 @@ Route::controller(Compare::class)->group(function () {
 Route::get('/', function () {
     return redirect('/compare');
 });
-
