@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" /><title>Compare</title>
+	<meta charset="utf-8" /><title>{{ env('APP_NAME') }}</title>
 	<meta http-equiv="X-UA-Compatible" content="chrome=1, IE=edge">
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 
+	<base href="{{ env('APP_URL') }}">
+
 	<!-- Bootstrap -->
-	<link href="/bootstrap/bootstrap.min.css" rel="stylesheet">
+	<link href="bootstrap/bootstrap.min.css" rel="stylesheet">
 	<!-- Requires jQuery -->
-	<script type="text/javascript" src="/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="jquery/3.2.1/jquery.min.js"></script>
 
 	<!-- Requires CodeMirror -->
-	<script type="text/javascript" src="/codemirror/5.32.0/codemirror.min.js"></script>
-	<script type="text/javascript" src="/codemirror/5.32.0/addon/search/searchcursor.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="/codemirror/5.32.0/codemirror.min.css" />
+	<script type="text/javascript" src="codemirror/5.32.0/codemirror.min.js"></script>
+	<script type="text/javascript" src="codemirror/5.32.0/addon/search/searchcursor.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="codemirror/5.32.0/codemirror.min.css" />
 
 	<!-- Requires Mergely -->
-	<script type="text/javascript" src="/mergely/js/mergely.js"></script>
-	<link type="text/css" rel="stylesheet" href="/mergely/css/mergely.css" />
+	<script type="text/javascript" src="mergely/js/mergely.js"></script>
+	<link type="text/css" rel="stylesheet" href="mergely/css/mergely.css" />
 	<script type="text/javascript">
 		$(document).ready(function () {
 			$('#mergely').mergely({
@@ -32,7 +34,6 @@
 			$("#mergely-splash").remove();
 			$("#lhsSelect").change(function(){
 				$('#path-lhs').text($("#lhsSelect").find(":selected").val());
-				//alert();
 				lhsLoad($("#lhsSelect").find(":selected").val());
 			});
 			$("#rhsSelect").change(function(){
@@ -43,7 +44,7 @@
 	</script>
 	<script type="text/javascript">
 		function lhsLoad($fileName){
-			var fileUrl = '/compare/getfile/' + $fileName;
+			var fileUrl = 'getfile/' + $fileName;
 			$.ajax({
 				type: 'GET', async: true, dataType: 'text',
 				url: fileUrl,
@@ -53,7 +54,7 @@
 			});
 		}
 		function rhsLoad($fileName){
-			var fileUrl = '/compare/getfile/' + $fileName;
+			var fileUrl = 'getfile/' + $fileName;
 			$.ajax({
 				type: 'GET', async: true, dataType: 'text',
 				url: fileUrl,
@@ -102,6 +103,6 @@
 			</div>
 		</div>
 	</div>
-	<script src="/bootstrap/bootstrap.bundle.min.js"></script>
+	<script src="bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 </html>

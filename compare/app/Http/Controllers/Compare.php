@@ -29,6 +29,8 @@ class Compare extends Controller
          ){
             return "400:Select a valid file to compare the contents";
         }
-        return file_get_contents(config('f5_compare.path_to_files') . $file);
+        $contents = config('f5_compare.path_to_files') . $file;
+        $contents .= file_get_contents(config('f5_compare.path_to_files') . $file);
+        return $contents;
     }
 }

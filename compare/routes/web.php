@@ -14,11 +14,7 @@ use App\Http\Controllers\Compare;
 |
 */
 Route::controller(Compare::class)->group(function () {
-    Route::get('/compare', 'compare')->name('compare');
-    Route::get('/compare/files', 'filelist')->name('filelist');
-    Route::get('/compare/getfile/{filePath}', 'getFileContents')->name('getfilecontents');
-});
-
-Route::get('/', function () {
-    return redirect('/compare');
+    Route::get('/', 'compare')->name('compare');
+    Route::get('/files', 'filelist')->name('filelist');
+    Route::get('/getfile/{filePath}', 'getFileContents')->name('getfilecontents');
 });
