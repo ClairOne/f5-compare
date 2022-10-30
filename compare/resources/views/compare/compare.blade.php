@@ -67,6 +67,10 @@
 </head>
 <body>
 	<div class="container">
+		<div class="logos" style="width:50%;">
+			<img src="{{ env('APP_URL') }}public/media/radmin.png" alt="Remote Admin Logo" width="30%;">
+			<img src="{{ env('APP_URL') }}public/media/client.png" alt="Client Logo" width="40%;" style="margin-left: 5%; margin-top:5%; border-left:1px solid grey; padding-left:5%;">
+		</div>
 		<div class="card my-2 shadow">
 			<div class="card-body">
 				<div class="row p-1 text-center">
@@ -105,4 +109,3 @@
 	</div>
 	<script src="bootstrap/bootstrap.bundle.min.js"></script>
 </body>
-</html>
